@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>NodeJS correios by vitorleal</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>NodeJS correios</h1>
+        <p>Módulo Nm nodeJS para calcular frete utilizando a api dos Correios</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/vitorleal/node-correios" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/vitorleal/node-correios/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/vitorleal/node-correios/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>
+<a name="correios-nodejs" class="anchor" href="#correios-nodejs"><span class="octicon octicon-link"></span></a>Correios NodeJS</h1>
+
+<p>Módulo de <a href="http://nodejs.org">nodeJS</a> que utiliza a API dos Correios para calcular frete de envio.
+<a href="http://www.correios.com.br/webServices/PDF/SCPP_manual_implementacao_calculo_remoto_de_precos_e_prazos.pdf">API dos Correios</a></p>
+
+<h2>
+<a name="como-instalar" class="anchor" href="#como-instalar"><span class="octicon octicon-link"></span></a>Como instalar</h2>
+
+<p>Para instalar é bem simples. Basta utilizar o <a href="npmjs.org">NPM</a> utilizando a <em>flag</em> <strong>--save</strong> para guardar como dependência no seu <strong>package.json</strong></p>
+
+<pre><code>npm install correios --save
+</code></pre>
+
+<h2>
+<a name="como-utilizar" class="anchor" href="#como-utilizar"><span class="octicon octicon-link"></span></a>Como utilizar</h2>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">Correios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./lib/correios'</span><span class="p">),</span>
+    <span class="nx">correios</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Correios</span><span class="p">();</span> <span class="c1">//cria um novo objeto correios</span>
+
+<span class="c1">//executa o método de pesquisa de valor do frete</span>
+<span class="nx">correios</span><span class="p">.</span><span class="nx">getPrice</span><span class="p">(</span><span class="nx">args</span><span class="p">);</span>
+
+<span class="c1">//qunado o evento result for emitido faz um log do retorno da api</span>
+<span class="nx">correios</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'result'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">//se ocorreu algum erro na execução faz um log do erro</span>
+<span class="nx">correios</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+<h2>
+<a name="documenta%C3%A7%C3%A3o" class="anchor" href="#documenta%C3%A7%C3%A3o"><span class="octicon octicon-link"></span></a>Documentação</h2>
+
+<p>No exemplo anterior a variável <strong>correios</strong> é um objeto <em><a href="http://nodejs.org/api/events.html">EventEmiter</a></em>. Você pode "escutar" pelos seguintes eventos:</p>
+
+<h4>
+<a name="m%C3%A9todos" class="anchor" href="#m%C3%A9todos"><span class="octicon octicon-link"></span></a>Métodos</h4>
+
+<p>O método implementado é o getPrice</p>
+
+<h5>
+<a name="correiosgetpriceargs" class="anchor" href="#correiosgetpriceargs"><span class="octicon octicon-link"></span></a>correios.getPrice(args);</h5>
+
+<p>Para executar o comando tem que enviar os campos <strong>obrigatórios</strong>. Para mais detalhes e informações veja o <a href="http://www.correios.com.br/webServices/PDF/SCPP_manual_implementacao_calculo_remoto_de_precos_e_prazos.pdf">PDF da API dos correios</a></p>
+
+<h6>
+<a name="obrigat%C3%B3rios" class="anchor" href="#obrigat%C3%B3rios"><span class="octicon octicon-link"></span></a>#Obrigatórios</h6>
+
+<ul>
+<li>
+<p><code>nCdServico</code> - <strong>String</strong></p>
+
+<p>Código do serviço: </p>
+
+<ul>
+<li>40010 = SEDEX Varejo</li>
+<li>40045 = SEDEX a Cobrar Varejo </li>
+<li>40215 = SEDEX 10 Varejo </li>
+<li>40290 = SEDEX Hoje Varejo </li>
+<li>41106 = PAC Varejo</li>
+</ul>
+</li>
+<li>
+<p><code>sCepOrigem</code> - <strong>String</strong></p>
+
+<p>CEP de Origem sem hífen. Exemplo: <strong>05311900</strong> </p>
+</li>
+<li>
+<p><code>sCepDestino</code> - <strong>String</strong></p>
+
+<p>CEP de Destino sem hífen</p>
+</li>
+<li>
+<p><code>nVlPeso</code> - <strong>String</strong></p>
+
+<p>Peso da encomenda, incluindo sua embalagem. O peso deve ser informado em quilogramas. Se o formato for Envelope, o valor máximo permitido será 1 kg</p>
+</li>
+<li>
+<p><code>nCdFormato</code> - <strong>Inteiro</strong></p>
+
+<p>Formato da encomenda (incluindo embalagem)</p>
+
+<ul>
+<li>1 = Formato caixa/pacote </li>
+<li>2 = Formato rolo/prisma </li>
+<li>3 = Envelope </li>
+</ul>
+</li>
+<li>
+<p><code>nVlComprimento</code> - <strong>Decimal</strong></p>
+
+<p>Comprimento da encomenda (incluindo embalagem), em centímetros </p>
+</li>
+<li>
+<p><code>nVlAltura</code> - <strong>Decimal</strong></p>
+
+<p>Altura da encomenda (incluindo embalagem), em centímetros. Se o formato for envelope, informar zero (0)</p>
+</li>
+<li>
+<p><code>nVlLargura</code> - <strong>Decimal</strong></p>
+
+<p>Largura da encomenda (incluindo embalagem), em centímetros</p>
+</li>
+<li>
+<p><code>nVlDiametro</code> - <strong>Decimal</strong></p>
+
+<p>Diâmetro da encomenda (incluindo embalagem), em centímetros</p>
+</li>
+</ul><h6>
+<a name="n%C3%A3o-obrigat%C3%B3rios" class="anchor" href="#n%C3%A3o-obrigat%C3%B3rios"><span class="octicon octicon-link"></span></a>Não obrigatórios</h6>
+
+<ul>
+<li>
+<p><code>nCdEmpresa</code> - <strong>String</strong></p>
+
+<p>Seu código administrativo junto à ECT. O código está disponível no corpo do contrato firmado com os Correios</p>
+</li>
+<li>
+<p><code>sDsSenha</code> - <strong>String</strong></p>
+
+<p>Senha para acesso ao serviço, associada ao seu código administrativo. A senha inicial corresponde aos 8 primeiros dígitos do CNPJ informado no contrato</p>
+</li>
+<li>
+<p><code>sCdMaoPropria</code> - <strong>String</strong></p>
+
+<p>Indica se a encomenda será entregue com o serviço adicional mão própria</p>
+
+<ul>
+<li>S = sim</li>
+<li>N = não <strong>PADRÃO</strong>
+</li>
+</ul>
+</li>
+<li>
+<p><code>nVlValorDeclarado</code> - <strong>Decimal</strong></p>
+
+<p>Indica se a encomenda será entregue com o serviço adicional valor declarado. Neste campo deve ser apresentado o valor declarado desejado, em Reais</p>
+</li>
+<li>
+<p><code>sCdAvisoRecebimento</code> - <strong>String</strong></p>
+
+<p>Indica se a encomenda será entregue com o serviço adicional mão própria</p>
+
+<ul>
+<li>S = sim</li>
+<li>N = não <strong>PADRÃO</strong>
+</li>
+</ul>
+</li>
+</ul><h3>
+<a name="resultado" class="anchor" href="#resultado"><span class="octicon octicon-link"></span></a>Resultado</h3>
+
+<ul>
+<li>
+<p><code>result</code> - Array com o resultado da pesquisa</p>
+
+<h5>
+<a name="exemplo-de-resultado" class="anchor" href="#exemplo-de-resultado"><span class="octicon octicon-link"></span></a>Exemplo de resultado</h5>
+
+<p>Retorno com <strong>sucesso</strong></p>
+
+<pre><code>[{ 
+Codigo: 40010,
+Valor: '23,30',
+ValorMaoPropria: '0,00',
+ValorAvisoRecebimento: '0,00',
+ValorValorDeclarado: '0,00',
+Erro: {},
+MsgErro: {}
+}]
+</code></pre>
+
+<p>Retorno com <strong>erro</strong></p>
+
+<pre><code>[{ 
+Codigo: 40010,
+Valor: '0,00',
+ValorMaoPropria: '0,00',
+ValorAvisoRecebimento: '0,00',
+ValorValorDeclarado: '0,00',
+Erro: '-20',
+MsgErro: 'A largura nao pode ser inferior a 11 cm.'
+}]
+</code></pre>
+</li>
+<li>
+<p><code>error</code>  - Retorna o erro ocorrido na execução</p>
+
+<h5>
+<a name="exemplo-de-erro" class="anchor" href="#exemplo-de-erro"><span class="octicon octicon-link"></span></a>Exemplo de erro</h5>
+
+<pre><code>Envie todos os campos obrigatórios
+</code></pre>
+</li>
+</ul><h2>
+<a name="autor" class="anchor" href="#autor"><span class="octicon octicon-link"></span></a>Autor</h2>
+
+<table>
+<thead><tr>
+<th><a href="http://twitter.com/vitorleal" title="Follow @vitorleal on Twitter"><img src="http://gravatar.com/avatar/e133221d7fbc0dee159dca127d2f6f00?s=80" alt="twitter/vitorleal"></a></th>
+</tr></thead>
+<tbody><tr>
+<td><a href="http://vitorleal.com">Vitor Leal</a></td>
+</tr></tbody>
+</table><h2>
+<a name="licen%C3%A7a" class="anchor" href="#licen%C3%A7a"><span class="octicon octicon-link"></span></a>Licença</h2>
+
+<p>Veja <a href="https://github.com/vitorleal/correios/blob/master/LICENSE.txt">LICENSE.txt</a></p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/vitorleal">vitorleal</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
