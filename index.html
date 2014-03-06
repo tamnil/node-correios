@@ -40,7 +40,10 @@
       </nav>
       <section>
         <h1>
-<a name="correios-nodejs" class="anchor" href="#correios-nodejs"><span class="octicon octicon-link"></span></a>Correios NodeJS</h1>
+<a name="correios-nodejs-" class="anchor" href="#correios-nodejs-"><span class="octicon octicon-link"></span></a>Correios NodeJS <a href="http://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt"></a>
+</h1>
+
+<p><a href="https://nodei.co/npm/node-correios/"><img src="https://nodei.co/npm/node-correios.png" alt="NPM"></a>   </p>
 
 <p>Módulo de <a href="http://nodejs.org">nodeJS</a> que utiliza a API dos Correios para calcular frete de envio.
 <a href="http://www.correios.com.br/webServices/PDF/SCPP_manual_implementacao_calculo_remoto_de_precos_e_prazos.pdf">API dos Correios</a></p>
@@ -57,10 +60,10 @@
 <a name="como-utilizar" class="anchor" href="#como-utilizar"><span class="octicon octicon-link"></span></a>Como utilizar</h2>
 
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">Correios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-correios'</span><span class="p">),</span>
-    <span class="nx">correios</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Correios</span><span class="p">();</span> <span class="c1">//cria um novo objeto correios</span>
+    <span class="nx">correios</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Correios</span><span class="p">();</span>
 
 <span class="c1">//executa o método de pesquisa de valor do frete</span>
-<span class="nx">correios</span><span class="p">.</span><span class="nx">getPrice</span><span class="p">(</span><span class="nx">args</span><span class="p">);</span>
+<span class="nx">correios</span><span class="p">.</span><span class="nx">calcPreco</span><span class="p">(</span><span class="nx">args</span><span class="p">);</span>
 
 <span class="c1">//qunado o evento result for emitido faz um log do retorno da api</span>
 <span class="nx">correios</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'result'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
@@ -71,6 +74,11 @@
 <span class="nx">correios</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
 <span class="p">});</span>
+
+<span class="c1">//se você não quer um resultado assíncrono utilize um callback</span>
+<span class="nx">correios</span><span class="p">.</span><span class="nx">calcPreco</span><span class="p">(</span><span class="nx">args</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
 </pre></div>
 
 <h2>
@@ -78,13 +86,58 @@
 
 <p>No exemplo anterior a variável <strong>correios</strong> é um objeto <em><a href="http://nodejs.org/api/events.html">EventEmiter</a></em>. Você pode "escutar" pelos seguintes eventos:</p>
 
-<h4>
-<a name="m%C3%A9todos" class="anchor" href="#m%C3%A9todos"><span class="octicon octicon-link"></span></a>Métodos</h4>
-
-<p>O método implementado é o getPrice</p>
+<ul>
+<li>
+<p><code>result</code> - Array com o resultado da pesquisa</p>
 
 <h5>
-<a name="correiosgetpriceargs" class="anchor" href="#correiosgetpriceargs"><span class="octicon octicon-link"></span></a>correios.getPrice(args);</h5>
+<a name="exemplo-de-resultado" class="anchor" href="#exemplo-de-resultado"><span class="octicon octicon-link"></span></a>Exemplo de resultado</h5>
+
+<p>Retorno com <strong>sucesso</strong></p>
+
+<pre><code>[{ 
+Codigo: 40010,
+Valor: '23,30',
+ValorMaoPropria: '0,00',
+ValorAvisoRecebimento: '0,00',
+ValorValorDeclarado: '0,00',
+Erro: {},
+MsgErro: {}
+}]
+</code></pre>
+
+<p>Retorno com <strong>erro</strong></p>
+
+<pre><code>[{ 
+Codigo: 40010,
+Valor: '0,00',
+ValorMaoPropria: '0,00',
+ValorAvisoRecebimento: '0,00',
+ValorValorDeclarado: '0,00',
+Erro: '-20',
+MsgErro: 'A largura nao pode ser inferior a 11 cm.'
+}]
+</code></pre>
+</li>
+<li>
+<p><code>error</code>  - Retorna o erro ocorrido na execução</p>
+
+<h5>
+<a name="exemplo-de-erro" class="anchor" href="#exemplo-de-erro"><span class="octicon octicon-link"></span></a>Exemplo de erro</h5>
+
+<pre><code>Envie todos os campos obrigatórios
+</code></pre>
+</li>
+</ul><h3>
+<a name="m%C3%A9todos" class="anchor" href="#m%C3%A9todos"><span class="octicon octicon-link"></span></a>Métodos</h3>
+
+<p>Os métodos implementados são: calcPreco e calcPrecoPrazo</p>
+
+<h5>
+<a name="correioscalcprecoargs" class="anchor" href="#correioscalcprecoargs"><span class="octicon octicon-link"></span></a>correios.calcPreco(args);</h5>
+
+<h5>
+<a name="correioscalcprecoprazoargs" class="anchor" href="#correioscalcprecoprazoargs"><span class="octicon octicon-link"></span></a>correios.calcPrecoPrazo(args);</h5>
 
 <p>Para executar o comando tem que enviar os campos <strong>obrigatórios</strong>. Para mais detalhes e informações veja o <a href="http://www.correios.com.br/webServices/PDF/SCPP_manual_implementacao_calculo_remoto_de_precos_e_prazos.pdf">PDF da API dos correios</a></p>
 
@@ -191,51 +244,6 @@
 <li>N = não <strong>PADRÃO</strong>
 </li>
 </ul>
-</li>
-</ul><h3>
-<a name="resultado" class="anchor" href="#resultado"><span class="octicon octicon-link"></span></a>Resultado</h3>
-
-<ul>
-<li>
-<p><code>result</code> - Array com o resultado da pesquisa</p>
-
-<h5>
-<a name="exemplo-de-resultado" class="anchor" href="#exemplo-de-resultado"><span class="octicon octicon-link"></span></a>Exemplo de resultado</h5>
-
-<p>Retorno com <strong>sucesso</strong></p>
-
-<pre><code>[{ 
-Codigo: 40010,
-Valor: '23,30',
-ValorMaoPropria: '0,00',
-ValorAvisoRecebimento: '0,00',
-ValorValorDeclarado: '0,00',
-Erro: {},
-MsgErro: {}
-}]
-</code></pre>
-
-<p>Retorno com <strong>erro</strong></p>
-
-<pre><code>[{ 
-Codigo: 40010,
-Valor: '0,00',
-ValorMaoPropria: '0,00',
-ValorAvisoRecebimento: '0,00',
-ValorValorDeclarado: '0,00',
-Erro: '-20',
-MsgErro: 'A largura nao pode ser inferior a 11 cm.'
-}]
-</code></pre>
-</li>
-<li>
-<p><code>error</code>  - Retorna o erro ocorrido na execução</p>
-
-<h5>
-<a name="exemplo-de-erro" class="anchor" href="#exemplo-de-erro"><span class="octicon octicon-link"></span></a>Exemplo de erro</h5>
-
-<pre><code>Envie todos os campos obrigatórios
-</code></pre>
 </li>
 </ul><h2>
 <a name="autor" class="anchor" href="#autor"><span class="octicon octicon-link"></span></a>Autor</h2>
