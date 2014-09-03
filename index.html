@@ -18,7 +18,7 @@
 
       <header>
         <h1>NodeJS correios</h1>
-        <p>Módulo Nm nodeJS para calcular frete utilizando a api dos Correios</p>
+        <p>Módulo de NodeJS para calcular frete utilizando a API dos Correios</p>
       </header>
 
       <div id="banner">
@@ -43,10 +43,15 @@
 <a name="correios-nodejs-" class="anchor" href="#correios-nodejs-"><span class="octicon octicon-link"></span></a>Correios NodeJS <a href="http://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt"></a>
 </h1>
 
-<p><a href="https://nodei.co/npm/node-correios/"><img src="https://nodei.co/npm/node-correios.png" alt="NPM"></a>   </p>
+<p><a href="https://nodei.co/npm/node-correios/"><img src="https://nodei.co/npm/node-correios.png" alt="NPM"></a></p>
 
-<p>Módulo de <a href="http://nodejs.org">nodeJS</a> que utiliza a API dos Correios para calcular frete de envio.
+<p>Módulo de <a href="http://nodejs.org">NodeJS</a> que utiliza a API dos Correios para calcular frete de envio.
 <a href="http://www.correios.com.br/webServices/PDF/SCPP_manual_implementacao_calculo_remoto_de_precos_e_prazos.pdf">API dos Correios</a></p>
+
+<h2>
+<a name="teste-nessa-aplica%C3%A7%C3%A3o-de-exemplo" class="anchor" href="#teste-nessa-aplica%C3%A7%C3%A3o-de-exemplo"><span class="octicon octicon-link"></span></a>Teste nessa aplicação de exemplo</h2>
+
+<p><a href="http://correios-server.herokuapp.com/frete?nCdServico=40010,40045&amp;sCepOrigem=22041030&amp;sCepDestino=04569001&amp;nVlPeso=1&amp;nCdFormato=1&amp;nVlComprimento=20&amp;nVlAltura=4&amp;nVlLargura=11&amp;nVlDiametro=20&amp;nVlValorDeclarado=500">App de exemplo do node-correios</a></p>
 
 <h2>
 <a name="como-instalar" class="anchor" href="#como-instalar"><span class="octicon octicon-link"></span></a>Como instalar</h2>
@@ -88,47 +93,46 @@
 
 <ul>
 <li>
-<p><code>result</code> - Array com o resultado da pesquisa</p>
-
-<h5>
+<code>result</code> - Array com o resultado da pesquisa</li>
+</ul><h5>
 <a name="exemplo-de-resultado" class="anchor" href="#exemplo-de-resultado"><span class="octicon octicon-link"></span></a>Exemplo de resultado</h5>
 
 <p>Retorno com <strong>sucesso</strong></p>
 
-<pre><code>[{ 
-Codigo: 40010,
-Valor: '23,30',
-ValorMaoPropria: '0,00',
-ValorAvisoRecebimento: '0,00',
-ValorValorDeclarado: '0,00',
-Erro: {},
-MsgErro: {}
+<pre><code>[{
+    Codigo: 40010,
+    Valor: '23,30',
+    ValorMaoPropria: '0,00',
+    ValorAvisoRecebimento: '0,00',
+    ValorValorDeclarado: '0,00',
+    Erro: {},
+    MsgErro: {}
 }]
 </code></pre>
 
 <p>Retorno com <strong>erro</strong></p>
 
-<pre><code>[{ 
-Codigo: 40010,
-Valor: '0,00',
-ValorMaoPropria: '0,00',
-ValorAvisoRecebimento: '0,00',
-ValorValorDeclarado: '0,00',
-Erro: '-20',
-MsgErro: 'A largura nao pode ser inferior a 11 cm.'
+<pre><code>[{
+    Codigo: 40010,
+    Valor: '0,00',
+    ValorMaoPropria: '0,00',
+    ValorAvisoRecebimento: '0,00',
+    ValorValorDeclarado: '0,00',
+    Erro: '-20',
+    MsgErro: 'A largura nao pode ser inferior a 11 cm.'
 }]
 </code></pre>
-</li>
-<li>
-<p><code>error</code>  - Retorna o erro ocorrido na execução</p>
 
-<h5>
+<ul>
+<li>
+<code>error</code>  - Retorna o erro ocorrido na execução</li>
+</ul><h5>
 <a name="exemplo-de-erro" class="anchor" href="#exemplo-de-erro"><span class="octicon octicon-link"></span></a>Exemplo de erro</h5>
 
 <pre><code>Envie todos os campos obrigatórios
 </code></pre>
-</li>
-</ul><h3>
+
+<h3>
 <a name="m%C3%A9todos" class="anchor" href="#m%C3%A9todos"><span class="octicon octicon-link"></span></a>Métodos</h3>
 
 <p>Os métodos implementados são: calcPreco e calcPrecoPrazo</p>
@@ -148,20 +152,20 @@ MsgErro: 'A largura nao pode ser inferior a 11 cm.'
 <li>
 <p><code>nCdServico</code> - <strong>String</strong></p>
 
-<p>Código do serviço: </p>
+<p>Código do serviço:</p>
 
 <ul>
 <li>40010 = SEDEX Varejo</li>
-<li>40045 = SEDEX a Cobrar Varejo </li>
-<li>40215 = SEDEX 10 Varejo </li>
-<li>40290 = SEDEX Hoje Varejo </li>
+<li>40045 = SEDEX a Cobrar Varejo</li>
+<li>40215 = SEDEX 10 Varejo</li>
+<li>40290 = SEDEX Hoje Varejo</li>
 <li>41106 = PAC Varejo</li>
 </ul>
 </li>
 <li>
 <p><code>sCepOrigem</code> - <strong>String</strong></p>
 
-<p>CEP de Origem sem hífen. Exemplo: <strong>05311900</strong> </p>
+<p>CEP de Origem sem hífen. Exemplo: <strong>05311900</strong></p>
 </li>
 <li>
 <p><code>sCepDestino</code> - <strong>String</strong></p>
@@ -179,15 +183,15 @@ MsgErro: 'A largura nao pode ser inferior a 11 cm.'
 <p>Formato da encomenda (incluindo embalagem)</p>
 
 <ul>
-<li>1 = Formato caixa/pacote </li>
-<li>2 = Formato rolo/prisma </li>
-<li>3 = Envelope </li>
+<li>1 = Formato caixa/pacote</li>
+<li>2 = Formato rolo/prisma</li>
+<li>3 = Envelope</li>
 </ul>
 </li>
 <li>
 <p><code>nVlComprimento</code> - <strong>Decimal</strong></p>
 
-<p>Comprimento da encomenda (incluindo embalagem), em centímetros </p>
+<p>Comprimento da encomenda (incluindo embalagem), em centímetros</p>
 </li>
 <li>
 <p><code>nVlAltura</code> - <strong>Decimal</strong></p>
