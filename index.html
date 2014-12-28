@@ -40,21 +40,23 @@
       </nav>
       <section>
         <h1>
-<a name="correios-nodejs-" class="anchor" href="#correios-nodejs-"><span class="octicon octicon-link"></span></a>Correios NodeJS <a href="http://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt"></a>
-</h1>
+<a id="correios-nodejs" class="anchor" href="#correios-nodejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Correios NodeJS</h1>
+
+<p><a href="https://travis-ci.org/vitorleal/node-correios"><img src="https://travis-ci.org/vitorleal/node-correios.svg?branch=master" alt="Build Status"></a>
+<a href="http://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt"></a></p>
 
 <p><a href="https://nodei.co/npm/node-correios/"><img src="https://nodei.co/npm/node-correios.png" alt="NPM"></a></p>
 
-<p>Módulo de <a href="http://nodejs.org">nodeJS</a> que utiliza a API dos Correios para calcular frete de envio.
+<p>Módulo de <a href="http://nodejs.org">NodeJS</a> que utiliza a API SOAP dos Correios para calcular frete de envio e buscar endereço pelo CEP.
 <a href="http://www.correios.com.br/webServices/PDF/SCPP_manual_implementacao_calculo_remoto_de_precos_e_prazos.pdf">API dos Correios</a></p>
 
 <h2>
-<a name="exemplo" class="anchor" href="#exemplo"><span class="octicon octicon-link"></span></a>Exemplo</h2>
+<a id="exemplo" class="anchor" href="#exemplo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Exemplo</h2>
 
 <p><a href="http://correios-server.herokuapp.com/frete?nCdServico=40010,40045&amp;sCepOrigem=22041030&amp;sCepDestino=04569001&amp;nVlPeso=1&amp;nCdFormato=1&amp;nVlComprimento=20&amp;nVlAltura=4&amp;nVlLargura=11&amp;nVlDiametro=20&amp;nVlValorDeclarado=500">App de exemplo do node-correios</a></p>
 
 <h2>
-<a name="como-instalar" class="anchor" href="#como-instalar"><span class="octicon octicon-link"></span></a>Como instalar</h2>
+<a id="como-instalar" class="anchor" href="#como-instalar" aria-hidden="true"><span class="octicon octicon-link"></span></a>Como instalar</h2>
 
 <p>Para instalar é bem simples. Basta utilizar o <a href="npmjs.org">NPM</a> utilizando a <em>flag</em> <strong>--save</strong> para guardar como dependência no seu <strong>package.json</strong></p>
 
@@ -62,40 +64,45 @@
 </code></pre>
 
 <h2>
-<a name="como-utilizar" class="anchor" href="#como-utilizar"><span class="octicon octicon-link"></span></a>Como utilizar</h2>
+<a id="como-utilizar" class="anchor" href="#como-utilizar" aria-hidden="true"><span class="octicon octicon-link"></span></a>Como utilizar</h2>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">Correios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-correios'</span><span class="p">),</span>
-    <span class="nx">correios</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Correios</span><span class="p">();</span>
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> Correios <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>node-correios<span class="pl-pds">'</span></span>),
+    correios <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Correios</span>();
 
-<span class="c1">//executa o método de pesquisa de valor do frete</span>
-<span class="nx">correios</span><span class="p">.</span><span class="nx">calcPreco</span><span class="p">(</span><span class="nx">args</span><span class="p">);</span>
+<span class="pl-c">//executa o método de pesquisa de valor do frete</span>
+correios.calcPreco(args);
 
-<span class="c1">//qunado o evento result for emitido faz um log do retorno da api</span>
-<span class="nx">correios</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'result'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
-<span class="p">});</span>
+<span class="pl-c">//quando o evento result for emitido faz um log do retorno da api</span>
+correios.on(<span class="pl-s1"><span class="pl-pds">'</span>result<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">result</span>) {
+  <span class="pl-en">console</span><span class="pl-s3">.log</span>(result);
+});
 
-<span class="c1">//se ocorreu algum erro na execução faz um log do erro</span>
-<span class="nx">correios</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-<span class="p">});</span>
+<span class="pl-c">//se ocorreu algum erro na execução faz um log do erro</span>
+correios.on(<span class="pl-s1"><span class="pl-pds">'</span>error<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">err</span>) {
+  <span class="pl-en">console</span><span class="pl-s3">.log</span>(err);
+});
 
-<span class="c1">//se você não quer um resultado assíncrono utilize um callback</span>
-<span class="nx">correios</span><span class="p">.</span><span class="nx">calcPreco</span><span class="p">(</span><span class="nx">args</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
-<span class="p">});</span>
+<span class="pl-c">//você também pode utilize um callback</span>
+correios.calcPreco(args, <span class="pl-st">function</span> (<span class="pl-vpf">result</span>) {
+  <span class="pl-en">console</span><span class="pl-s3">.log</span>(result);
+});
 </pre></div>
 
 <h2>
-<a name="documenta%C3%A7%C3%A3o" class="anchor" href="#documenta%C3%A7%C3%A3o"><span class="octicon octicon-link"></span></a>Documentação</h2>
+<a id="documentação" class="anchor" href="#documenta%C3%A7%C3%A3o" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentação</h2>
+
+<h3>
+<a id="calcupar-preço-do-frete" class="anchor" href="#calcupar-pre%C3%A7o-do-frete" aria-hidden="true"><span class="octicon octicon-link"></span></a>Calcupar preço do frete</h3>
 
 <p>No exemplo anterior a variável <strong>correios</strong> é um objeto <em><a href="http://nodejs.org/api/events.html">EventEmiter</a></em>. Você pode "escutar" pelos seguintes eventos:</p>
 
 <ul>
 <li>
 <code>result</code> - Array com o resultado da pesquisa</li>
-</ul><h5>
-<a name="exemplo-de-resultado" class="anchor" href="#exemplo-de-resultado"><span class="octicon octicon-link"></span></a>Exemplo de resultado</h5>
+</ul>
+
+<h5>
+<a id="exemplo-de-resultado" class="anchor" href="#exemplo-de-resultado" aria-hidden="true"><span class="octicon octicon-link"></span></a>Exemplo de resultado</h5>
 
 <p>Retorno com <strong>sucesso</strong></p>
 
@@ -126,27 +133,29 @@
 <ul>
 <li>
 <code>error</code>  - Retorna o erro ocorrido na execução</li>
-</ul><h5>
-<a name="exemplo-de-erro" class="anchor" href="#exemplo-de-erro"><span class="octicon octicon-link"></span></a>Exemplo de erro</h5>
+</ul>
+
+<h5>
+<a id="exemplo-de-erro" class="anchor" href="#exemplo-de-erro" aria-hidden="true"><span class="octicon octicon-link"></span></a>Exemplo de erro</h5>
 
 <pre><code>Envie todos os campos obrigatórios
 </code></pre>
 
 <h3>
-<a name="m%C3%A9todos" class="anchor" href="#m%C3%A9todos"><span class="octicon octicon-link"></span></a>Métodos</h3>
+<a id="métodos" class="anchor" href="#m%C3%A9todos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Métodos</h3>
 
 <p>Os métodos implementados são: calcPreco e calcPrecoPrazo</p>
 
 <h5>
-<a name="correioscalcprecoargs" class="anchor" href="#correioscalcprecoargs"><span class="octicon octicon-link"></span></a>correios.calcPreco(args);</h5>
+<a id="correioscalcprecoargs" class="anchor" href="#correioscalcprecoargs" aria-hidden="true"><span class="octicon octicon-link"></span></a>correios.calcPreco(args);</h5>
 
 <h5>
-<a name="correioscalcprecoprazoargs" class="anchor" href="#correioscalcprecoprazoargs"><span class="octicon octicon-link"></span></a>correios.calcPrecoPrazo(args);</h5>
+<a id="correioscalcprecoprazoargs" class="anchor" href="#correioscalcprecoprazoargs" aria-hidden="true"><span class="octicon octicon-link"></span></a>correios.calcPrecoPrazo(args);</h5>
 
 <p>Para executar o comando tem que enviar os campos <strong>obrigatórios</strong>. Para mais detalhes e informações veja o <a href="http://www.correios.com.br/webServices/PDF/SCPP_manual_implementacao_calculo_remoto_de_precos_e_prazos.pdf">PDF da API dos correios</a></p>
 
 <h6>
-<a name="obrigat%C3%B3rios" class="anchor" href="#obrigat%C3%B3rios"><span class="octicon octicon-link"></span></a>#Obrigatórios</h6>
+<a id="obrigatórios" class="anchor" href="#obrigat%C3%B3rios" aria-hidden="true"><span class="octicon octicon-link"></span></a>#Obrigatórios</h6>
 
 <ul>
 <li>
@@ -208,8 +217,10 @@
 
 <p>Diâmetro da encomenda (incluindo embalagem), em centímetros</p>
 </li>
-</ul><h6>
-<a name="n%C3%A3o-obrigat%C3%B3rios" class="anchor" href="#n%C3%A3o-obrigat%C3%B3rios"><span class="octicon octicon-link"></span></a>Não obrigatórios</h6>
+</ul>
+
+<h6>
+<a id="não-obrigatórios" class="anchor" href="#n%C3%A3o-obrigat%C3%B3rios" aria-hidden="true"><span class="octicon octicon-link"></span></a>Não obrigatórios</h6>
 
 <ul>
 <li>
@@ -249,18 +260,84 @@
 </li>
 </ul>
 </li>
-</ul><h2>
-<a name="autor" class="anchor" href="#autor"><span class="octicon octicon-link"></span></a>Autor</h2>
+</ul>
+
+<h3>
+<a id="buscar-cep" class="anchor" href="#buscar-cep" aria-hidden="true"><span class="octicon octicon-link"></span></a>Buscar CEP</h3>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> Correios <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>node-correios<span class="pl-pds">'</span></span>),
+    correios <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Correios</span>();
+
+<span class="pl-c">//Buscar endereço pelo CEP</span>
+correios.consultaCEP({ cep<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>00000000<span class="pl-pds">'</span></span> });
+
+<span class="pl-c">//quando o evento result for emitido faz um log do retorno da api</span>
+correios.on(<span class="pl-s1"><span class="pl-pds">'</span>result<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">result</span>) {
+  <span class="pl-en">console</span><span class="pl-s3">.log</span>(result);
+});
+
+<span class="pl-c">//se ocorreu algum erro na execução faz um log do erro</span>
+correios.on(<span class="pl-s1"><span class="pl-pds">'</span>error<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">err</span>) {
+  <span class="pl-en">console</span><span class="pl-s3">.log</span>(err);
+});
+
+<span class="pl-c">//você também pode utilize um callback</span>
+correios.consultaCEP({ cep<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>045690sfsf01<span class="pl-pds">'</span></span> }, <span class="pl-st">function</span>(<span class="pl-vpf">result</span>) {
+  <span class="pl-en">console</span><span class="pl-s3">.log</span>(result)
+});
+</pre></div>
+
+<p>No exemplo anterior a variável <strong>correios</strong> é um objeto <em><a href="http://nodejs.org/api/events.html">EventEmiter</a></em>. Você pode "escutar" pelos seguintes eventos:</p>
+
+<ul>
+<li>
+<code>result</code> - Objecto com o resultado da pesquisa</li>
+</ul>
+
+<h5>
+<a id="exemplo-de-resultado-1" class="anchor" href="#exemplo-de-resultado-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Exemplo de resultado</h5>
+
+<p>Retorno com <strong>sucesso</strong></p>
+
+<pre><code>  bairro: 'Ipanema',
+  cep: '22421030',
+  cidade: 'Rio de Janeiro',
+  complemento: {},
+  complemento2: {},
+  end: 'Rua Redentor',
+  id: '0',
+  uf: 'RJ'
+}
+
+</code></pre>
+
+<p>Retorno com <strong>erro</strong></p>
+
+<pre><code>{
+  Erro: 404,
+  MsgError: 'Cep não encontrado'
+}
+
+</code></pre>
+
+<h2>
+<a id="autor" class="anchor" href="#autor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Autor</h2>
 
 <table>
-<thead><tr>
+<thead>
+<tr>
 <th><a href="http://twitter.com/vitorleal" title="Follow @vitorleal on Twitter"><img src="http://gravatar.com/avatar/e133221d7fbc0dee159dca127d2f6f00?s=80" alt="twitter/vitorleal"></a></th>
-</tr></thead>
-<tbody><tr>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td><a href="http://vitorleal.com">Vitor Leal</a></td>
-</tr></tbody>
-</table><h2>
-<a name="licen%C3%A7a" class="anchor" href="#licen%C3%A7a"><span class="octicon octicon-link"></span></a>Licença</h2>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="licença" class="anchor" href="#licen%C3%A7a" aria-hidden="true"><span class="octicon octicon-link"></span></a>Licença</h2>
 
 <p>Veja <a href="https://github.com/vitorleal/correios/blob/master/LICENSE.txt">LICENSE.txt</a></p>
       </section>
