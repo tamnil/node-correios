@@ -1,95 +1,81 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>NodeJS correios by vitorleal</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/main.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <meta charset="UTF-8">
+    <title>Node.js correios by vitorleal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
+    <section class="page-header">
+      <h1 class="project-name">Node.js correios</h1>
+      <h2 class="project-tagline">Módulo de NodeJS para calcular frete utilizando a API dos Correios</h2>
+      <a href="https://github.com/vitorleal/node-correios" class="btn">View on GitHub</a>
+      <a href="https://github.com/vitorleal/node-correios/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/vitorleal/node-correios/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-      <header>
-        <h1>NodeJS correios</h1>
-        <p>Módulo de NodeJS para calcular frete utilizando a API dos Correios</p>
-      </header>
-
-      <div id="banner">
-        <span id="logo"></span>
-
-        <a href="https://github.com/vitorleal/node-correios" class="button fork"><strong>View On GitHub</strong></a>
-        <div class="downloads">
-          <span>Downloads:</span>
-          <ul>
-            <li><a href="https://github.com/vitorleal/node-correios/zipball/master" class="button">ZIP</a></li>
-            <li><a href="https://github.com/vitorleal/node-correios/tarball/master" class="button">TAR</a></li>
-          </ul>
-        </div>
-      </div><!-- end banner -->
-
-    <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
-      <section>
-        <h1>
-<a id="correios-nodejs" class="anchor" href="#correios-nodejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Correios NodeJS</h1>
+    <section class="main-content">
+      <h1>
+<a id="correios-nodejs" class="anchor" href="#correios-nodejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Correios Node.js</h1>
 
 <p><a href="https://travis-ci.org/vitorleal/node-correios"><img src="https://travis-ci.org/vitorleal/node-correios.svg?branch=master" alt="Build Status"></a>
-<a href="http://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt"></a></p>
+<a href="http://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt"></a>
+<a href="https://github.com/vitorleal/node-correios"><img src="https://img.shields.io/npm/v/npm.svg" alt="npm"></a>
+<a href="https://github.com/vitorleal/node-correios"><img src="https://img.shields.io/npm/l/express.svg" alt="npm"></a></p>
 
-<p><a href="https://nodei.co/npm/node-correios/"><img src="https://nodei.co/npm/node-correios.png" alt="NPM"></a></p>
+<p><a href="https://nodei.co/npm/node-correios/"><img src="https://nodei.co/npm/node-correios.png?mini=true" alt="NPM"></a></p>
 
-<p>Módulo de <a href="http://nodejs.org">NodeJS</a> que utiliza a API SOAP dos Correios para calcular frete de envio e buscar endereço pelo CEP.
+<p>Módulo de <a href="http://nodejs.org">Node.js</a> que utilizar a API SOAP dos Correios para <strong>calcular frete de envio</strong> e <strong>buscar endereço pelo CEP</strong>.
 <a href="http://www.correios.com.br/webServices/PDF/SCPP_manual_implementacao_calculo_remoto_de_precos_e_prazos.pdf">API dos Correios</a></p>
 
 <h2>
-<a id="exemplo" class="anchor" href="#exemplo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Exemplo</h2>
+<a id="app-de-exemplo" class="anchor" href="#app-de-exemplo" aria-hidden="true"><span class="octicon octicon-link"></span></a>APP de Exemplo</h2>
 
-<p><a href="http://correios-server.herokuapp.com/frete?nCdServico=40010,40045&amp;sCepOrigem=22041030&amp;sCepDestino=04569001&amp;nVlPeso=1&amp;nCdFormato=1&amp;nVlComprimento=20&amp;nVlAltura=4&amp;nVlLargura=11&amp;nVlDiametro=20&amp;nVlValorDeclarado=500">App de exemplo do node-correios</a></p>
+<ul>
+<li>Calcula frete - <a href="http://correios-server.herokuapp.com/frete?nCdServico=40010,40045&amp;sCepOrigem=22041030&amp;sCepDestino=04569001&amp;nVlPeso=1&amp;nCdFormato=1&amp;nVlComprimento=20&amp;nVlAltura=4&amp;nVlLargura=11&amp;nVlDiametro=20&amp;nVlValorDeclarado=500">link</a>
+</li>
+<li>Calcula frete/prazo - <a href="http://correios-server.herokuapp.com/frete/prazo?nCdServico=40010,40045&amp;sCepOrigem=22041030&amp;sCepDestino=04569001&amp;nVlPeso=1&amp;nCdFormato=1&amp;nVlComprimento=20&amp;nVlAltura=4&amp;nVlLargura=11&amp;nVlDiametro=20&amp;nVlValorDeclarado=500">link</a>
+</li>
+<li>Busca Cep - <a href="http://correios-server.herokuapp.com/cep/22421010">link</a>
+</li>
+</ul>
 
 <h2>
 <a id="como-instalar" class="anchor" href="#como-instalar" aria-hidden="true"><span class="octicon octicon-link"></span></a>Como instalar</h2>
 
-<p>Para instalar é bem simples. Basta utilizar o <a href="npmjs.org">NPM</a> utilizando a <em>flag</em> <strong>--save</strong> para guardar como dependência no seu <strong>package.json</strong></p>
+<p>Basta utilizar o <a href="npmjs.org">NPM</a> com a <em>flag</em> <strong>--save</strong> para guardar como dependência no seu <strong>package.json</strong></p>
 
 <pre><code>npm install node-correios --save
 </code></pre>
 
 <h2>
-<a id="como-utilizar" class="anchor" href="#como-utilizar" aria-hidden="true"><span class="octicon octicon-link"></span></a>Como utilizar</h2>
+<a id="como-utilizar-o-calculo-de-frete" class="anchor" href="#como-utilizar-o-calculo-de-frete" aria-hidden="true"><span class="octicon octicon-link"></span></a>Como utilizar o calculo de frete</h2>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> Correios <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>node-correios<span class="pl-pds">'</span></span>),
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> Correios <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>node-correios<span class="pl-pds">'</span></span>),
     correios <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Correios</span>();
 
 <span class="pl-c">//executa o método de pesquisa de valor do frete</span>
 correios.calcPreco(args);
 
 <span class="pl-c">//quando o evento result for emitido faz um log do retorno da api</span>
-correios.on(<span class="pl-s1"><span class="pl-pds">'</span>result<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">result</span>) {
-  <span class="pl-en">console</span><span class="pl-s3">.log</span>(result);
+correios.on(<span class="pl-s"><span class="pl-pds">'</span>result<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">result</span>) {
+  <span class="pl-en">console</span><span class="pl-c1">.log</span>(result);
 });
 
 <span class="pl-c">//se ocorreu algum erro na execução faz um log do erro</span>
-correios.on(<span class="pl-s1"><span class="pl-pds">'</span>error<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">err</span>) {
-  <span class="pl-en">console</span><span class="pl-s3">.log</span>(err);
+correios.on(<span class="pl-s"><span class="pl-pds">'</span>error<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">err</span>) {
+  <span class="pl-en">console</span><span class="pl-c1">.log</span>(err);
 });
 
 <span class="pl-c">//você também pode utilize um callback</span>
-correios.calcPreco(args, <span class="pl-st">function</span> (<span class="pl-vpf">result</span>) {
-  <span class="pl-en">console</span><span class="pl-s3">.log</span>(result);
+correios.calcPreco(args, <span class="pl-k">function</span> (<span class="pl-smi">result</span>) {
+  <span class="pl-en">console</span><span class="pl-c1">.log</span>(result);
 });
 </pre></div>
-
-<h2>
-<a id="documentação" class="anchor" href="#documenta%C3%A7%C3%A3o" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentação</h2>
 
 <h3>
 <a id="calcupar-preço-do-frete" class="anchor" href="#calcupar-pre%C3%A7o-do-frete" aria-hidden="true"><span class="octicon octicon-link"></span></a>Calcupar preço do frete</h3>
@@ -155,7 +141,7 @@ correios.calcPreco(args, <span class="pl-st">function</span> (<span class="pl-vp
 <p>Para executar o comando tem que enviar os campos <strong>obrigatórios</strong>. Para mais detalhes e informações veja o <a href="http://www.correios.com.br/webServices/PDF/SCPP_manual_implementacao_calculo_remoto_de_precos_e_prazos.pdf">PDF da API dos correios</a></p>
 
 <h6>
-<a id="obrigatórios" class="anchor" href="#obrigat%C3%B3rios" aria-hidden="true"><span class="octicon octicon-link"></span></a>#Obrigatórios</h6>
+<a id="obrigatórios" class="anchor" href="#obrigat%C3%B3rios" aria-hidden="true"><span class="octicon octicon-link"></span></a>Obrigatórios</h6>
 
 <ul>
 <li>
@@ -262,28 +248,28 @@ correios.calcPreco(args, <span class="pl-st">function</span> (<span class="pl-vp
 </li>
 </ul>
 
-<h3>
-<a id="buscar-cep" class="anchor" href="#buscar-cep" aria-hidden="true"><span class="octicon octicon-link"></span></a>Buscar CEP</h3>
+<h2>
+<a id="como-utilizar-a-buscar-por-cep" class="anchor" href="#como-utilizar-a-buscar-por-cep" aria-hidden="true"><span class="octicon octicon-link"></span></a>Como utilizar a buscar por CEP</h2>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> Correios <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>node-correios<span class="pl-pds">'</span></span>),
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> Correios <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>node-correios<span class="pl-pds">'</span></span>),
     correios <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Correios</span>();
 
 <span class="pl-c">//Buscar endereço pelo CEP</span>
-correios.consultaCEP({ cep<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>00000000<span class="pl-pds">'</span></span> });
+correios.consultaCEP({ cep<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>00000000<span class="pl-pds">'</span></span> });
 
 <span class="pl-c">//quando o evento result for emitido faz um log do retorno da api</span>
-correios.on(<span class="pl-s1"><span class="pl-pds">'</span>result<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">result</span>) {
-  <span class="pl-en">console</span><span class="pl-s3">.log</span>(result);
+correios.on(<span class="pl-s"><span class="pl-pds">'</span>result<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">result</span>) {
+  <span class="pl-en">console</span><span class="pl-c1">.log</span>(result);
 });
 
 <span class="pl-c">//se ocorreu algum erro na execução faz um log do erro</span>
-correios.on(<span class="pl-s1"><span class="pl-pds">'</span>error<span class="pl-pds">'</span></span>, <span class="pl-st">function</span> (<span class="pl-vpf">err</span>) {
-  <span class="pl-en">console</span><span class="pl-s3">.log</span>(err);
+correios.on(<span class="pl-s"><span class="pl-pds">'</span>error<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">err</span>) {
+  <span class="pl-en">console</span><span class="pl-c1">.log</span>(err);
 });
 
 <span class="pl-c">//você também pode utilize um callback</span>
-correios.consultaCEP({ cep<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>045690sfsf01<span class="pl-pds">'</span></span> }, <span class="pl-st">function</span>(<span class="pl-vpf">result</span>) {
-  <span class="pl-en">console</span><span class="pl-s3">.log</span>(result)
+correios.consultaCEP({ cep<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>00000000<span class="pl-pds">'</span></span> }, <span class="pl-k">function</span>(<span class="pl-smi">result</span>) {
+  <span class="pl-en">console</span><span class="pl-c1">.log</span>(result)
 });
 </pre></div>
 
@@ -299,16 +285,13 @@ correios.consultaCEP({ cep<span class="pl-k">:</span> <span class="pl-s1"><span 
 
 <p>Retorno com <strong>sucesso</strong></p>
 
-<pre><code>  bairro: 'Ipanema',
+<pre><code>{
+  bairro: 'Ipanema',
   cep: '22421030',
-  cidade: 'Rio de Janeiro',
-  complemento: {},
-  complemento2: {},
-  end: 'Rua Redentor',
-  id: '0',
+  localidade: 'Rio de Janeiro',
+  logradouro: 'Rua Redentor',
   uf: 'RJ'
 }
-
 </code></pre>
 
 <p>Retorno com <strong>erro</strong></p>
@@ -339,15 +322,17 @@ correios.consultaCEP({ cep<span class="pl-k">:</span> <span class="pl-s1"><span 
 <h2>
 <a id="licença" class="anchor" href="#licen%C3%A7a" aria-hidden="true"><span class="octicon octicon-link"></span></a>Licença</h2>
 
-<p>Veja <a href="https://github.com/vitorleal/correios/blob/master/LICENSE.txt">LICENSE.txt</a></p>
-      </section>
-      <footer>
-        <p>Project maintained by <a href="https://github.com/vitorleal">vitorleal</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+<p>Veja <a href="https://github.com/vitorleal/node-correios/blob/master/LICENSE.txt">LICENSE.txt</a></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/vitorleal/node-correios">Node.js correios</a> is maintained by <a href="https://github.com/vitorleal">vitorleal</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-              <script type="text/javascript">
+
+    </section>
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -360,3 +345,4 @@ correios.consultaCEP({ cep<span class="pl-k">:</span> <span class="pl-s1"><span 
 
   </body>
 </html>
+
